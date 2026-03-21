@@ -1,0 +1,44 @@
+﻿<h2>Cadastro de Cliente / Locador</h2>
+
+@* Formulário simples de cadastro sem estilização.
+   Opção de cadastro: escolha entre "Cliente" (quem aluga) e "Locador" (proprietário do imóvel).
+   Campos obrigatórios definidos no modelo: Nome e CPF. *@
+
+<form method="post">
+
+    @* Nome: campo obrigatório para identificação do cliente/locador *@
+    <label>Nome:</label>
+    <input type="text" name="Nome" />
+    <br />
+
+    @* CPF: campo obrigatório para documento de identificação (somente números normalmente) *@
+    <label>CPF:</label>
+    <input type="text" name="CPF" />
+    <br />
+
+    @* Telefone: contato telefônico (opcional) *@
+    <label>Telefone:</label>
+    <input type="text" name="Telefone" />
+    <br />
+
+    @* Email: endereço de e-mail para contato (opcional) *@
+    <label>Email:</label>
+    <input type="text" name="Email" />
+    <br />
+
+    @* Endereço: endereço residencial ou comercial do cliente/locador (opcional) *@
+    <label>Endereço:</label>
+    <input type="text" name="Endereco" />
+    <br />
+
+    @* TipoCliente: define se o registro será como "Cliente" ou "Locador" *@
+    <label>Tipo:</label>
+    <select name="TipoCliente">
+        <option value="Cliente">Cliente</option>
+        <option value="Locador">Locador</option>
+    </select>
+    <br />
+
+    <button type="submit">Cadastrar</button>
+
+</form>
