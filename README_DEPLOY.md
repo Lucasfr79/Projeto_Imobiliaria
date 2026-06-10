@@ -30,11 +30,11 @@ Antes de publicar o frontend, edite:
 frontend/api-config.js
 ```
 
-e troque a URL local pela URL publica do backend:
+confirme se a URL esta apontando para o backend publicado:
 
 ```js
 window.CLICKHOME_API_BASE =
-  window.CLICKHOME_API_BASE || "https://seu-backend.onrender.com/api";
+  window.CLICKHOME_API_BASE || "https://clickhome-api.onrender.com/api";
 ```
 
 Na Vercel ou Netlify:
