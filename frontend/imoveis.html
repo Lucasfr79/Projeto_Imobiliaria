@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imoveis - ClickHome</title>
+
+<style>
+:root {
+  --bg: #f4f8fc;
+  --surface: rgba(255,255,255,0.94);
+  --surface-strong: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: rgba(15, 23, 42, 0.1);
+  --primary: #0f4c81;
+  --primary-strong: #123d63;
+  --accent: #f59e0b;
+  --green: #15803d;
+  --red: #b91c1c;
+  --shadow: 0 22px 60px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background:
+    linear-gradient(135deg, rgba(15, 76, 129, 0.12), transparent 34%),
+    linear-gradient(180deg, #f8fbff 0%, #edf4fb 100%);
+  color: var(--text);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(7, 17, 31, 0.92);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 18px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a,
+nav button {
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  cursor: pointer;
+}
+
+nav a:hover,
+nav button:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+#themeBtn {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #111827;
+  border: none;
+}
+
+.hero {
+  padding: 64px 5vw 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 28px;
+  align-items: end;
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 5vw, 4.3rem);
+  line-height: 1.05;
+  margin: 0 0 14px;
+}
+
+.hero p {
+  max-width: 700px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.quick-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.quick-panel strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary-strong);
+}
+
+.quick-panel p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.toolbar {
+  padding: 0 5vw 12px;
+  display: grid;
+  grid-template-columns: minmax(220px, 420px) auto;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.toolbar input,
+.simulador input,
+.simulador select {
+  padding: 14px 15px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  font: inherit;
+  color: var(--text);
+  outline: none;
+}
+
+.toolbar input:focus,
+.simulador input:focus,
+.simulador select:focus {
+  border-color: rgba(15, 76, 129, 0.55);
+  box-shadow: 0 0 0 4px rgba(15, 76, 129, 0.1);
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 11px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.ghost-btn {
+  background: var(--surface-strong);
+  color: var(--primary-strong);
+  border: 1px solid var(--line);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), #1d4ed8);
+  color: white;
+}
+
+.compare-banner {
+  display: none;
+  margin: 10px 5vw 0;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 76, 129, 0.18);
+  background: #eff6ff;
+  color: var(--primary-strong);
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.compare-banner.show {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  padding: 24px 5vw 36px;
+}
+
+.imovel {
+  background: var(--surface);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+}
+
+.imovel:hover {
+  transform: translateY(-5px);
+  border-color: rgba(15, 76, 129, 0.25);
+  box-shadow: 0 28px 72px rgba(15,23,42,0.16);
+}
+
+.imovel img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.imovel h3 {
+  margin: 0 0 10px;
+  font-size: 1.22rem;
+  color: var(--primary);
+}
+
+.imovel p {
+  color: var(--muted);
+  margin: 8px 0;
+  line-height: 1.55;
+}
+
+.imovel strong {
+  display: block;
+  margin-top: 14px;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+.acoes {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.favorito {
+  min-width: 46px;
+  background: #fff1f2;
+  color: var(--red);
+  border: 1px solid rgba(185, 28, 28, 0.14);
+}
+
+.favorito.ativo {
+  background: var(--red);
+  color: white;
+}
+
+.info {
+  background: linear-gradient(135deg, var(--primary), #1d4ed8);
+  color: white;
+}
+
+.comparar-card {
+  grid-column: 1 / -1;
+  background: #f8fafc;
+  color: var(--primary-strong);
+  border: 1px solid var(--line);
+}
+
+.comparar-card.destacado {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(2, 6, 23, 0.74);
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--surface-strong);
+  width: min(100%, 980px);
+  max-height: 92vh;
+  overflow: auto;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(2,6,23,0.35);
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+}
+
+.modal-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-body {
+  padding: 28px;
+}
+
+.modal-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+#fechar,
+#fecharComparacao {
+  background: #eef2f7;
+  color: var(--text);
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.modal-body h2 {
+  margin: 0 0 8px;
+  color: var(--primary);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.modal-body p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.modal-price {
+  display: block;
+  margin: 18px 0;
+  font-size: 1.7rem;
+  color: var(--text);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0 6px;
+}
+
+.simulador {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+}
+
+.simulador h3 {
+  margin: 0 0 12px;
+  color: var(--primary-strong);
+}
+
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.simulador label {
+  display: grid;
+  gap: 6px;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.sim-result {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.sim-result.aprovado {
+  color: #166534;
+  border-color: rgba(22, 101, 52, 0.22);
+  background: #f0fdf4;
+}
+
+.sim-result.negado {
+  color: #991b1b;
+  border-color: rgba(153, 27, 27, 0.2);
+  background: #fef2f2;
+}
+
+.comparison {
+  display: none;
+  margin: 0 5vw 46px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.comparison.show {
+  display: block;
+}
+
+.comparison-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--line);
+}
+
+.comparison-head h2 {
+  margin: 0;
+  color: var(--primary-strong);
+}
+
+.comparison-table {
+  display: grid;
+  grid-template-columns: 180px repeat(2, minmax(0, 1fr));
+}
+
+.comparison-table div {
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.comparison-table .label {
+  font-weight: 900;
+  color: var(--primary-strong);
+  background: #f8fafc;
+}
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+  max-width: 340px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #0f172a;
+  color: white;
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+.toast.show {
+  display: block;
+}
+
+body.dark {
+  --bg: #07111f;
+  --surface: rgba(15,23,42,0.92);
+  --surface-strong: #111c31;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --line: rgba(255,255,255,0.08);
+  --primary: #7dd3fc;
+  --primary-strong: #bfdbfe;
+  --shadow: 0 24px 60px rgba(2,6,23,0.45);
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.14), transparent 34%),
+    linear-gradient(180deg, #07111f 0%, #0d172b 100%);
+}
+
+body.dark .imovel strong,
+body.dark .modal-price,
+body.dark .simulador label {
+  color: var(--text);
+}
+
+body.dark .quick-panel,
+body.dark .simulador,
+body.dark .comparison-head,
+body.dark .comparison-table .label,
+body.dark .comparar-card {
+  background: rgba(255,255,255,0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 26px;
+  background: rgba(7, 17, 31, 0.96);
+  color: rgba(255,255,255,0.86);
+}
+
+@media (max-width: 1020px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .modal-grid,
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-media img {
+    min-height: 260px;
+    max-height: 360px;
+  }
+}
+
+@media (max-width: 700px) {
+  header,
+  .toolbar,
+  .compare-banner,
+  .comparison-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .toolbar {
+    display: flex;
+  }
+
+  .toolbar-actions {
+    justify-content: flex-start;
+  }
+
+  .grid,
+  .sim-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-table {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-table .label {
+    border-top: 2px solid var(--line);
+  }
+
+  .hero,
+  .toolbar,
+  .grid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>ClickHome</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="login.html">Login</a>
+    <button id="themeBtn" type="button">Tema</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Imoveis disponiveis</h1>
+    <p>Abra um imovel em tela grande, salve seus favoritos, compare duas opcoes lado a lado e simule uma pre-aprovacao de financiamento pelo CPF.</p>
+  </div>
+  <aside class="quick-panel">
+    <strong>Sua jornada de aluguel e compra</strong>
+    <p>Os favoritos ficam salvos no backend quando voce esta logado como cliente. A simulacao e demonstrativa para a apresentacao.</p>
+  </aside>
+</section>
+
+<div class="toolbar">
+  <input type="text" id="busca" placeholder="Buscar por nome, bairro ou caracteristica">
+  <div class="toolbar-actions">
+    <button class="ghost-btn" id="verFavoritos" type="button">Ver favoritos</button>
+    <button class="ghost-btn" id="limparComparacao" type="button">Limpar comparacao</button>
+  </div>
+</div>
+
+<div id="compareBanner" class="compare-banner">
+  <strong id="compareText">Escolha o primeiro imovel para comparar.</strong>
+  <button class="ghost-btn" id="cancelarComparacao" type="button">Cancelar</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<section id="comparison" class="comparison">
+  <div class="comparison-head">
+    <h2>Comparacao de imoveis</h2>
+    <button class="ghost-btn" id="fecharComparacao" type="button">Fechar</button>
+  </div>
+  <div id="comparisonTable" class="comparison-table"></div>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-grid">
+      <div class="modal-media">
+        <img id="imagemModal" src="" alt="Imagem do imovel">
+      </div>
+      <div class="modal-body">
+        <div class="modal-top">
+          <div>
+            <h2 id="titulo"></h2>
+            <p id="local"></p>
+          </div>
+          <button id="fechar" type="button">x</button>
+        </div>
+
+        <p id="detalhes"></p>
+        <strong id="preco" class="modal-price"></strong>
+
+        <div class="modal-actions">
+          <button id="salvarModal" class="favorito" type="button">Salvar imovel</button>
+          <button id="compararModal" class="primary-btn" type="button">Comparar</button>
+        </div>
+
+        <section class="simulador">
+          <h3>Simular financiamento</h3>
+          <div class="sim-grid">
+            <label>
+              CPF
+              <input id="cpf" type="text" inputmode="numeric" placeholder="00000000000">
+            </label>
+            <label>
+              Renda mensal
+              <input id="renda" type="number" min="1" step="100" placeholder="6500">
+            </label>
+            <label>
+              Entrada
+              <input id="entrada" type="number" min="0" step="100" placeholder="60000">
+            </label>
+            <label>
+              Parcelas
+              <select id="parcelas">
+                <option value="180">180 meses</option>
+                <option value="240">240 meses</option>
+                <option value="360" selected>360 meses</option>
+              </select>
+            </label>
+          </div>
+          <button id="simularBtn" class="primary-btn" type="button">Simular aprovacao</button>
+          <div id="simResult" class="sim-result">Preencha os dados para simular.</div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<footer>
+  ClickHome 2026
+</footer>
+
+<script src="api-config.js"></script>
+<script>
+const API_BASE = window.CLICKHOME_API_BASE;
+const STORAGE_KEY = "clickhome_usuario";
+const grid = document.getElementById("grid");
+const modal = document.getElementById("modal");
+const toast = document.getElementById("toast");
+const savedUser = localStorage.getItem(STORAGE_KEY);
+const usuario = savedUser ? JSON.parse(savedUser) : null;
+
+const staticImoveis = [
+  {
+    id: 1,
+    titulo: "Casa Moderna",
+    localizacao: "Zona 07 - Maringa",
+    descricao: "3 quartos, 2 banheiros, garagem dupla e area gourmet.",
+    preco: 550000,
+    imagemUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    id: 2,
+    titulo: "Apartamento Central",
+    localizacao: "Centro - Maringa",
+    descricao: "2 quartos, sacada, vaga coberta e localizacao estrategica.",
+    preco: 300000,
+    imagemUrl: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    id: 3,
+    titulo: "Sobrado Premium",
+    localizacao: "Zona 02 - Maringa",
+    descricao: "4 quartos, piscina, suite e area gourmet completa.",
+    preco: 890000,
+    imagemUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+  }
+];
+
+const imagens = [
+  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80"
+];
+
+let imoveis = [...staticImoveis];
+for (let i = 4; i <= 18; i++) {
+  imoveis.push({
+    id: i,
+    titulo: ["Casa com quintal", "Apartamento com varanda", "Sobrado contemporaneo", "Studio moderno", "Casa em condominio"][i % 5],
+    localizacao: ["Jardim Alvorada", "Zona 03", "Novo Centro", "Jardim Italia", "Zona 05"][i % 5] + " - Maringa",
+    descricao: ["3 quartos e 2 vagas", "2 quartos com sacada", "4 quartos e area gourmet", "1 quarto mobiliado", "Seguranca 24h e lazer"][i % 5],
+    preco: 230000 + i * 21000,
+    imagemUrl: imagens[i % imagens.length]
+  });
+}
+
+let favoritos = new Set();
+let imovelAtual = null;
+let comparacao = [];
+let aguardandoSegundo = false;
+let filtroFavoritos = false;
+
+function moeda(valor) {
+  return Number(valor || 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function avisar(mensagem) {
+  toast.textContent = mensagem;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2800);
+}
+
+function normalizarPreco(texto) {
+  return Number(String(texto).replace(/\D/g, "")) || 0;
+}
+
+function criarCard(imovel) {
+  const salvo = favoritos.has(imovel.id);
+  const selecionado = comparacao.some((item) => item.id === imovel.id);
+  return `
+    <article class="imovel" data-id="${imovel.id}">
+      <img src="${imovel.imagemUrl}" alt="${imovel.titulo}">
+      <h3>${imovel.titulo}</h3>
+      <p>${imovel.localizacao}</p>
+      <p>${imovel.descricao}</p>
+      <strong>${moeda(imovel.preco)}</strong>
+      <div class="acoes">
+        <button class="favorito ${salvo ? "ativo" : ""}" data-action="favorito" type="button">${salvo ? "Salvo" : "Salvar"}</button>
+        <button class="info" data-action="info" type="button">Ver detalhes</button>
+        <button class="comparar-card ${selecionado ? "destacado" : ""}" data-action="comparar-card" type="button">
+          ${aguardandoSegundo ? "Escolher para comparar" : "Comparar"}
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function renderizar(lista = imoveis) {
+  const termo = document.getElementById("busca").value.toLowerCase();
+  const filtrados = lista.filter((imovel) => {
+    const texto = `${imovel.titulo} ${imovel.localizacao} ${imovel.descricao}`.toLowerCase();
+    const passaBusca = texto.includes(termo);
+    const passaFavorito = !filtroFavoritos || favoritos.has(imovel.id);
+    return passaBusca && passaFavorito;
+  });
+
+  grid.innerHTML = filtrados.map(criarCard).join("");
+}
+
+function abrirModal(imovel) {
+  imovelAtual = imovel;
+  document.getElementById("imagemModal").src = imovel.imagemUrl;
+  document.getElementById("imagemModal").alt = imovel.titulo;
+  document.getElementById("titulo").textContent = imovel.titulo;
+  document.getElementById("local").textContent = imovel.localizacao;
+  document.getElementById("detalhes").textContent = imovel.descricao;
+  document.getElementById("preco").textContent = moeda(imovel.preco);
+  document.getElementById("entrada").value = Math.round(imovel.preco * 0.12);
+  document.getElementById("salvarModal").classList.toggle("ativo", favoritos.has(imovel.id));
+  document.getElementById("salvarModal").textContent = favoritos.has(imovel.id) ? "Imovel salvo" : "Salvar imovel";
+  document.getElementById("simResult").textContent = "Preencha os dados para simular.";
+  document.getElementById("simResult").className = "sim-result";
+  modal.classList.add("show");
+}
+
+function fecharModal() {
+  modal.classList.remove("show");
+}
+
+async function carregarFavoritos() {
+  if (!usuario || usuario.tipo === "Locador") return;
+
+  try {
+    const response = await fetch(`${API_BASE}/usuario/${usuario.id}/favoritos`);
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    favoritos = new Set(data.favoritos || []);
+  } catch {
+    const local = JSON.parse(localStorage.getItem("clickhome_favoritos") || "[]");
+    favoritos = new Set(local);
+  }
+}
+
+async function alternarFavorito(imovel) {
+  if (!usuario || usuario.tipo === "Locador") {
+    avisar("Entre como cliente para salvar favoritos no backend.");
+    return;
+  }
+
+  const jaSalvo = favoritos.has(imovel.id);
+  const metodo = jaSalvo ? "DELETE" : "POST";
+
+  try {
+    const response = await fetch(`${API_BASE}/usuario/${usuario.id}/favoritos/${imovel.id}`, {
+      method: metodo
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.mensagem || "Nao foi possivel salvar.");
+    favoritos = new Set(data.favoritos || []);
+    localStorage.setItem("clickhome_favoritos", JSON.stringify([...favoritos]));
+    avisar(data.mensagem);
+  } catch (error) {
+    if (jaSalvo) favoritos.delete(imovel.id);
+    else favoritos.add(imovel.id);
+    localStorage.setItem("clickhome_favoritos", JSON.stringify([...favoritos]));
+    avisar("API indisponivel: favorito salvo localmente para a demonstracao.");
+  }
+
+  if (imovelAtual && imovelAtual.id === imovel.id) {
+    document.getElementById("salvarModal").classList.toggle("ativo", favoritos.has(imovel.id));
+    document.getElementById("salvarModal").textContent = favoritos.has(imovel.id) ? "Imovel salvo" : "Salvar imovel";
+  }
+
+  renderizar();
+}
+
+function iniciarComparacao(imovel) {
+  comparacao = [imovel];
+  aguardandoSegundo = true;
+  fecharModal();
+  document.getElementById("compareBanner").classList.add("show");
+  document.getElementById("compareText").textContent = `Comparando ${imovel.titulo}. Escolha outro imovel.`;
+  avisar("Agora escolha outro imovel para comparar.");
+  renderizar();
+}
+
+function escolherComparacao(imovel) {
+  if (!aguardandoSegundo) {
+    iniciarComparacao(imovel);
+    return;
+  }
+
+  if (comparacao[0] && comparacao[0].id === imovel.id) {
+    avisar("Escolha um imovel diferente para comparar.");
+    return;
+  }
+
+  comparacao = [comparacao[0], imovel];
+  aguardandoSegundo = false;
+  document.getElementById("compareBanner").classList.remove("show");
+  mostrarComparacao();
+  renderizar();
+}
+
+function mostrarComparacao() {
+  const [a, b] = comparacao;
+  const maisBarato = a.preco <= b.preco ? a.id : b.id;
+  const linhas = [
+    ["Imovel", a.titulo, b.titulo],
+    ["Localizacao", a.localizacao, b.localizacao],
+    ["Descricao", a.descricao, b.descricao],
+    ["Preco", `${moeda(a.preco)} ${a.id === maisBarato ? "(menor valor)" : ""}`, `${moeda(b.preco)} ${b.id === maisBarato ? "(menor valor)" : ""}`],
+    ["Entrada sugerida", moeda(a.preco * 0.12), moeda(b.preco * 0.12)],
+    ["Favorito", favoritos.has(a.id) ? "Salvo" : "Nao salvo", favoritos.has(b.id) ? "Salvo" : "Nao salvo"]
+  ];
+
+  document.getElementById("comparisonTable").innerHTML = linhas
+    .map(([label, valorA, valorB]) => `
+      <div class="label">${label}</div>
+      <div>${valorA}</div>
+      <div>${valorB}</div>
+    `)
+    .join("");
+  document.getElementById("comparison").classList.add("show");
+  document.getElementById("comparison").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function limparComparacao() {
+  comparacao = [];
+  aguardandoSegundo = false;
+  document.getElementById("compareBanner").classList.remove("show");
+  document.getElementById("comparison").classList.remove("show");
+  renderizar();
+}
+
+async function simularFinanciamento() {
+  if (!imovelAtual) return;
+
+  const resultado = document.getElementById("simResult");
+  resultado.textContent = "Simulando aprovacao...";
+  resultado.className = "sim-result";
+
+  const payload = {
+    cpf: document.getElementById("cpf").value,
+    valorImovel: imovelAtual.preco,
+    entrada: Number(document.getElementById("entrada").value),
+    rendaMensal: Number(document.getElementById("renda").value),
+    parcelas: Number(document.getElementById("parcelas").value)
+  };
+
+  try {
+    const response = await fetch(`${API_BASE}/financiamento/simular`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.mensagem || "Nao foi possivel simular.");
+
+    resultado.className = `sim-result ${data.aprovado ? "aprovado" : "negado"}`;
+    resultado.innerHTML = `
+      <strong>${data.mensagem}</strong><br>
+      Valor financiado: ${moeda(data.valorFinanciado)}<br>
+      Parcela estimada: ${moeda(data.parcelaEstimada)}<br>
+      Renda minima sugerida: ${moeda(data.rendaMinima)}
+    `;
+  } catch (error) {
+    const cpf = String(payload.cpf).replace(/\D/g, "");
+    const parcela = (payload.valorImovel - payload.entrada) / payload.parcelas * 1.75;
+    const aprovado = cpf.length === 11 && Number(cpf.slice(-2)) >= 25 && payload.rendaMensal >= parcela / 0.35;
+    resultado.className = `sim-result ${aprovado ? "aprovado" : "negado"}`;
+    resultado.innerHTML = `
+      <strong>${aprovado ? "Pre-aprovado na simulacao local." : "Nao aprovado na simulacao local."}</strong><br>
+      Parcela estimada: ${moeda(parcela)}<br>
+      ${error.message}
+    `;
+  }
+}
+
+async function carregarImoveisApi() {
+  try {
+    const response = await fetch(API_BASE + "/imovel");
+    if (!response.ok) throw new Error();
+    const data = await response.json();
+    imoveis = data.map((imovel) => ({
+      id: imovel.id,
+      titulo: imovel.titulo,
+      localizacao: imovel.localizacao,
+      descricao: imovel.descricao,
+      preco: Number(imovel.preco),
+      imagemUrl: imovel.imagemUrl
+    }));
+  } catch {
+    console.log("API indisponivel, mantendo imoveis estaticos.");
+  }
+}
+
+document.addEventListener("click", (event) => {
+  const action = event.target.dataset.action;
+  if (!action) return;
+
+  const card = event.target.closest(".imovel");
+  const imovel = imoveis.find((item) => item.id === Number(card.dataset.id));
+  if (!imovel) return;
+
+  if (action === "info") abrirModal(imovel);
+  if (action === "favorito") alternarFavorito(imovel);
+  if (action === "comparar-card") escolherComparacao(imovel);
+});
+
+document.getElementById("fechar").addEventListener("click", fecharModal);
+document.getElementById("salvarModal").addEventListener("click", () => alternarFavorito(imovelAtual));
+document.getElementById("compararModal").addEventListener("click", () => iniciarComparacao(imovelAtual));
+document.getElementById("simularBtn").addEventListener("click", simularFinanciamento);
+document.getElementById("busca").addEventListener("input", () => renderizar());
+document.getElementById("cancelarComparacao").addEventListener("click", limparComparacao);
+document.getElementById("limparComparacao").addEventListener("click", limparComparacao);
+document.getElementById("fecharComparacao").addEventListener("click", limparComparacao);
+document.getElementById("verFavoritos").addEventListener("click", () => {
+  filtroFavoritos = !filtroFavoritos;
+  document.getElementById("verFavoritos").textContent = filtroFavoritos ? "Ver todos" : "Ver favoritos";
+  renderizar();
+});
+
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) fecharModal();
+});
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
+(async function iniciar() {
+  await carregarImoveisApi();
+  await carregarFavoritos();
+  renderizar();
+})();
+</script>
+</body>
+</html>

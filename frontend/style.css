@@ -1,0 +1,384 @@
+:root {
+  --bg: #f3f7fb;
+  --bg-soft: #e7eef8;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: rgba(15, 23, 42, 0.1);
+  --primary: #0f4c81;
+  --primary-strong: #123d63;
+  --accent: #f59e0b;
+  --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.12), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light {
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.12), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+  color: var(--text);
+}
+
+body.dark {
+  --bg: #07111f;
+  --bg-soft: #0f1b31;
+  --surface: rgba(15, 23, 42, 0.88);
+  --surface-strong: #111c31;
+  --text: #f8fafc;
+  --muted: #c7d2fe;
+  --line: rgba(255, 255, 255, 0.1);
+  --primary: #60a5fa;
+  --primary-strong: #3b82f6;
+  --accent: #fbbf24;
+  --shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 28%),
+    linear-gradient(180deg, #07111f 0%, #0d172b 100%);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(16px);
+  background: rgba(7, 17, 31, 0.88);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 5vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateY(-1px);
+}
+
+nav button {
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  border: none;
+  padding: 10px 14px;
+  color: #111827;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.25s, filter 0.25s;
+}
+
+nav button:hover {
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.04);
+}
+
+.hero {
+  padding: 96px 5vw 88px;
+  min-height: 78vh;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  background:
+    linear-gradient(110deg, rgba(7, 17, 31, 0.88), rgba(15, 76, 129, 0.78)),
+    url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80") center/cover;
+  color: white;
+}
+
+.hero h2 {
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  max-width: 780px;
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 560px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 28px;
+}
+
+.hero button,
+.btn-visita {
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  color: #111827;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(249, 115, 22, 0.24);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.hero button:hover,
+.btn-visita:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 36px rgba(249, 115, 22, 0.3);
+}
+
+.features,
+.imoveis,
+.contato,
+.mapa,
+.banner {
+  padding: 72px 5vw;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: -46px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.18);
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.banner {
+  padding-top: 18px;
+}
+
+.banner h2,
+.imoveis h2,
+.mapa h2,
+.contato h2 {
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.banner p,
+.mapa p {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+.carrossel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.anuncios {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 6px;
+  scrollbar-width: none;
+}
+
+.anuncios::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  min-width: 300px;
+  height: 210px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.prev,
+.next {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface-strong);
+  color: var(--primary);
+  border: 1px solid var(--line);
+  font-size: 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.imoveis {
+  display: block;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.cards .card {
+  padding: 16px;
+}
+
+.cards .card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+
+.cards .card h3 {
+  font-size: 1.3rem;
+}
+
+.mapa {
+  background: linear-gradient(135deg, rgba(15, 76, 129, 0.08), rgba(245, 158, 11, 0.08));
+}
+
+.cta {
+  font-size: 1.08rem;
+}
+
+#map {
+  height: 280px;
+  width: min(100%, 820px);
+  margin: 26px auto 0;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.contato {
+  text-align: center;
+}
+
+.contato input {
+  display: block;
+  margin: 0 auto 14px;
+  padding: 14px 16px;
+  width: min(100%, 380px);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--text);
+}
+
+.contato button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 28px 20px;
+  background: rgba(7, 17, 31, 0.96);
+  color: rgba(255, 255, 255, 0.84);
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .features,
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  header {
+    align-items: flex-start;
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .features,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .carrossel {
+    grid-template-columns: 1fr;
+  }
+
+  .prev,
+  .next {
+    display: none;
+  }
+
+  .item {
+    min-width: 82vw;
+  }
+}

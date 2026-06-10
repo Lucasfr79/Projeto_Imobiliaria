@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Contato - ClickHome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf4fb 100%);
+      color: #0f172a;
+      transition: 0.3s;
+    }
+
+    header {
+      background: rgba(7, 17, 31, 0.92);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5vw;
+      position: sticky;
+      top: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
+    nav a:hover { background: rgba(255,255,255,0.1); }
+
+    nav button {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+      border: none;
+      padding: 10px 14px;
+      color: #111827;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: auto;
+      padding: 64px 5vw;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0f4c81;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #475569;
+      max-width: 760px;
+      margin: 0 auto 34px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+    }
+
+    form,
+    .info {
+      background: rgba(255,255,255,0.92);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 22px 60px rgba(15,23,42,0.12);
+      border: 1px solid rgba(15,23,42,0.08);
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,0.1);
+      font-size: 14px;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    form button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #0f4c81, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .info h3 { margin-top: 0; color: #0f4c81; }
+    .info p { line-height: 1.7; color: #475569; }
+
+    #map {
+      width: 100%;
+      height: 280px;
+      border-radius: 18px;
+      margin-top: 16px;
+      border: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      background: rgba(7,17,31,0.96);
+      color: rgba(255,255,255,0.86);
+    }
+
+    body.dark {
+      background: linear-gradient(180deg, #07111f 0%, #0d172b 100%);
+      color: white;
+    }
+
+    body.dark form,
+    body.dark .info {
+      background: rgba(15,23,42,0.9);
+    }
+
+    body.dark input,
+    body.dark textarea {
+      background: #16233c;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    body.dark .subtitle,
+    body.dark .info p {
+      color: #cbd5e1;
+    }
+
+    @media (max-width: 860px) {
+      header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ClickHome</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="imoveis.html">Imoveis</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="login.html">Login</a>
+    <button id="themeBtn">🌙</button>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Entre em Contato</h2>
+  <p class="subtitle">Estamos prontos para apresentar imoveis, esclarecer duvidas e agendar visitas com um atendimento rapido e proximo.</p>
+
+  <div class="grid">
+    <form>
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <input type="tel" placeholder="Telefone">
+      <textarea placeholder="Digite sua mensagem..." required></textarea>
+      <button type="submit">Enviar mensagem</button>
+    </form>
+
+    <div class="info">
+      <h3>Informacoes</h3>
+      <p><strong>Telefone:</strong> (44) 99999-0000</p>
+      <p><strong>Email:</strong> contato@clickhome.com</p>
+      <p><strong>Endereco:</strong> Av. XV de Novembro, 1234 - Centro, Maringa - PR</p>
+
+      <iframe
+        id="map"
+        src="https://www.google.com/maps?q=-23.4205,-51.9333&hl=pt&z=15&output=embed">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 ClickHome - Todos os direitos reservados</p>
+</footer>
+
+<script>
+  const btn = document.getElementById("themeBtn");
+  btn.onclick = () => {
+    document.body.classList.toggle("dark");
+    btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  };
+</script>
+
+</body>
+</html>

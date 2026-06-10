@@ -1,0 +1,65 @@
+[
+  {
+    "Id": 1,
+    "Nome": "Lucas Teste",
+    "Email": "lucas.teste@clickhome.com",
+    "Senha": "1234",
+    "Telefone": "44999990000",
+    "Tipo": "Cliente",
+    "ImoveisFavoritos": [],
+    "CriadoEm": "2026-04-15T03:53:09.7810906Z"
+  },
+  {
+    "Id": 2,
+    "Nome": "lucas",
+    "Email": "lucas@gmail.com",
+    "Senha": "lucas1234",
+    "Telefone": "41995731132",
+    "Tipo": "Cliente",
+    "ImoveisFavoritos": [],
+    "CriadoEm": "2026-04-15T03:59:35.2088932Z"
+  },
+  {
+    "Id": 3,
+    "Nome": "lucas",
+    "Email": "lucass@gmail.com",
+    "Senha": "1234",
+    "Telefone": "4199573113",
+    "Tipo": "Cliente",
+    "ImoveisFavoritos": [],
+    "CriadoEm": "2026-04-15T11:30:36.6754449Z"
+  },
+  {
+    "Id": 4,
+    "Nome": "Lucas Eduardo Fragoso",
+    "Email": "teste12@gmail.com",
+    "Senha": "teste12",
+    "Telefone": "41987247734",
+    "Tipo": "Cliente",
+    "ImoveisFavoritos": [],
+    "CriadoEm": "2026-04-15T21:21:06.8118333Z"
+  },
+  {
+    "Id": 5,
+    "Nome": "lucas pereira",
+    "Email": "lucaspereira88404@gmail.com",
+    "Senha": "lucas100",
+    "Telefone": "41995731132",
+    "Tipo": "Locador",
+    "ImoveisFavoritos": [],
+    "CriadoEm": "2026-05-13T00:30:46.9649421Z"
+  },
+  {
+    "Id": 6,
+    "Nome": "lucas pereira",
+    "Email": "lucaspereira@gmail.com",
+    "Senha": "lucas100",
+    "Telefone": "41995731132",
+    "Tipo": "Cliente",
+    "ImoveisFavoritos": [
+      2,
+      3
+    ],
+    "CriadoEm": "2026-05-13T00:57:09.3942746Z"
+  }
+]

@@ -1,20 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Imobiliaria.Models;
+using Imobiliaria.Services;
+using Microsoft.AspNetCore.Mvc;
 
-public class ClienteController : Controller
+namespace Imobiliaria.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ClienteController : ControllerBase
 {
-    public IActionResult Cadastrar()
+    private readonly ClienteStore _clienteStore;
+
+    public ClienteController(ClienteStore clienteStore)
     {
-        return View();
+        _clienteStore = clienteStore;
     }
 
-    [HttpPost]
-    public IActionResult Cadastrar(Cliente cliente)
+    [HttpGet]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Listar()
     {
-        if (ModelState.IsValid)
+        var clientes = await _clienteStore.GetAllAsync();
+        return Ok(clientes);
+    }
+
+    [HttpPost("Cadastrar")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Cadastrar([FromBody] Cliente cliente)
+    {
+        if (!ModelState.IsValid)
         {
-            return Content("Cliente cadastrado com sucesso!");
+            return BadRequest(ModelState);
         }
 
-        return View(cliente);
+        var clienteSalvo = await _clienteStore.AddAsync(cliente);
+
+        return Ok(new
+        {
+            mensagem = "Cliente cadastrado com sucesso!",
+            cliente = clienteSalvo
+        });
     }
 }

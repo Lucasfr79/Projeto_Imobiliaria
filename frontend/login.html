@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - ClickHome</title>
+
+    <style>
+      body.login-page {
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        position: relative;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .btn-voltar {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: #0f172a;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 920px;
+        background: rgba(255, 255, 255, 0.35);
+        padding: 14px;
+        border-radius: 22px;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      }
+
+      .login-box {
+        display: flex;
+        min-height: 560px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: white;
+      }
+
+      .login-left {
+        width: 46%;
+        background: linear-gradient(160deg, #0f172a, #1d4ed8);
+        color: white;
+        padding: 48px 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .login-left h1 {
+        font-size: 32px;
+        margin-bottom: 16px;
+      }
+
+      .login-left p {
+        color: #dbeafe;
+        line-height: 1.6;
+      }
+
+      .login-left ul {
+        padding-left: 18px;
+        line-height: 1.8;
+        color: #dbeafe;
+      }
+
+      .login-right {
+        width: 54%;
+        padding: 40px 36px;
+        box-sizing: border-box;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .tab-btn {
+        flex: 1;
+        border: 1px solid #cbd5e1;
+        background: #eff6ff;
+        color: #0f172a;
+        border-radius: 999px;
+        padding: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .tab-btn.active {
+        background: #1d4ed8;
+        color: white;
+        border-color: #1d4ed8;
+      }
+
+      .panel {
+        display: none;
+      }
+
+      .panel.active {
+        display: block;
+      }
+
+      h2 {
+        color: #0f172a;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        color: #475569;
+        margin-bottom: 22px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        color: #0f172a;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      input {
+        padding: 12px;
+        margin-bottom: 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        font-size: 15px;
+      }
+
+      .role-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .role-option input {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .role-card {
+        display: block;
+        min-height: 92px;
+        padding: 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 14px;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .role-card strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #0f172a;
+      }
+
+      .role-card span {
+        color: #475569;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .role-option input:checked + .role-card {
+        background: #eff6ff;
+        border-color: #1d4ed8;
+        box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.14);
+      }
+
+      .submit-btn {
+        background: #0f172a;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 14px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .submit-btn:hover {
+        background: #1d4ed8;
+      }
+
+      .status {
+        min-height: 24px;
+        margin-top: 16px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .status.success {
+        color: #166534;
+      }
+
+      .status.error {
+        color: #b91c1c;
+      }
+
+      .status.info {
+        color: #1d4ed8;
+      }
+
+      .logged-user {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 12px;
+        background: #eff6ff;
+        color: #0f172a;
+        display: none;
+      }
+
+      .logged-user.show {
+        display: block;
+      }
+
+      @media (max-width: 860px) {
+        .login-box {
+          flex-direction: column;
+        }
+
+        .login-left,
+        .login-right {
+          width: 100%;
+        }
+
+        .role-options {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="login-page">
+    <button class="btn-voltar" onclick="voltarPagina()">&larr; Voltar</button>
+
+    <div class="login-container">
+      <div class="login-box">
+        <div class="login-left">
+          <h1>ClickHome</h1>
+          <p>
+            Entre para apresentar um fluxo completo de imobiliaria com
+            cadastro, autenticacao e sessao salva no navegador.
+          </p>
+          <ul>
+            <li>cadastro de usuario pela API</li>
+            <li>login com validacao de e-mail e senha</li>
+            <li>dados mantidos no backend para a demonstracao</li>
+          </ul>
+        </div>
+
+        <div class="login-right">
+          <div class="tabs">
+            <button class="tab-btn active" type="button" data-tab="login">
+              Entrar
+            </button>
+            <button class="tab-btn" type="button" data-tab="cadastro">
+              Criar conta
+            </button>
+          </div>
+
+          <section id="loginPanel" class="panel active">
+            <h2>Fazer login</h2>
+            <p class="subtitle">Use um usuario cadastrado para acessar.</p>
+
+            <form id="loginForm">
+              <label for="loginEmail">E-mail</label>
+              <input
+                type="email"
+                id="loginEmail"
+                placeholder="Digite seu e-mail"
+                required
+              />
+
+              <label for="loginSenha">Senha</label>
+              <input
+                type="password"
+                id="loginSenha"
+                placeholder="Digite sua senha"
+                required
+              />
+
+              <button class="submit-btn" type="submit">Entrar</button>
+            </form>
+          </section>
+
+          <section id="cadastroPanel" class="panel">
+            <h2>Criar conta</h2>
+            <p class="subtitle">Escolha como voce quer usar a ClickHome.</p>
+
+            <form id="registerForm">
+              <label>Tipo de conta</label>
+              <div class="role-options">
+                <label class="role-option">
+                  <input type="radio" name="registerTipo" value="Cliente" checked />
+                  <span class="role-card">
+                    <strong>Quero alugar</strong>
+                    <span>Buscar imoveis, favoritar opcoes e falar com a imobiliaria.</span>
+                  </span>
+                </label>
+
+                <label class="role-option">
+                  <input type="radio" name="registerTipo" value="Locador" />
+                  <span class="role-card">
+                    <strong>Sou locador</strong>
+                    <span>Cadastrar imoveis, acompanhar anuncios e gerenciar locacoes.</span>
+                  </span>
+                </label>
+              </div>
+
+              <label for="registerNome">Nome</label>
+              <input
+                type="text"
+                id="registerNome"
+                placeholder="Nome completo"
+                required
+              />
+
+              <label for="registerEmail">E-mail</label>
+              <input
+                type="email"
+                id="registerEmail"
+                placeholder="Digite seu e-mail"
+                required
+              />
+
+              <label for="registerTelefone">Telefone</label>
+              <input
+                type="tel"
+                id="registerTelefone"
+                placeholder="(44) 99999-0000"
+              />
+
+              <label for="registerSenha">Senha</label>
+              <input
+                type="password"
+                id="registerSenha"
+                placeholder="Crie uma senha"
+                minlength="4"
+                required
+              />
+
+              <button class="submit-btn" type="submit">Cadastrar</button>
+            </form>
+          </section>
+
+          <div id="status" class="status info"></div>
+          <div id="loggedUser" class="logged-user"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="api-config.js"></script>
+    <script>
+      const API_BASE = window.CLICKHOME_API_BASE;
+      const STORAGE_KEY = "clickhome_usuario";
+
+      const statusEl = document.getElementById("status");
+      const loggedUserEl = document.getElementById("loggedUser");
+      const loginForm = document.getElementById("loginForm");
+      const registerForm = document.getElementById("registerForm");
+      const tabButtons = document.querySelectorAll(".tab-btn");
+
+      function voltarPagina() {
+        if (document.referrer !== "") {
+          window.history.back();
+        } else {
+          window.location.href = "index.html";
+        }
+      }
+
+      function setStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.className = "status " + type;
+      }
+
+      function switchTab(tab) {
+        tabButtons.forEach((button) => {
+          button.classList.toggle("active", button.dataset.tab === tab);
+        });
+
+        document.getElementById("loginPanel").classList.toggle("active", tab === "login");
+        document.getElementById("cadastroPanel").classList.toggle("active", tab === "cadastro");
+      }
+
+      function renderLoggedUser() {
+        const savedUser = localStorage.getItem(STORAGE_KEY);
+
+        if (!savedUser) {
+          loggedUserEl.classList.remove("show");
+          loggedUserEl.innerHTML = "";
+          return;
+        }
+
+        const user = JSON.parse(savedUser);
+        loggedUserEl.classList.add("show");
+        loggedUserEl.innerHTML = `
+          <strong>Usuario autenticado:</strong><br />
+          ${user.nome}<br />
+          ${user.email}
+        `;
+      }
+
+      async function sendRequest(url, payload) {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.mensagem || "Nao foi possivel concluir a operacao.");
+        }
+
+        return data;
+      }
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => switchTab(button.dataset.tab));
+      });
+
+      registerForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        setStatus("Cadastrando usuario...", "info");
+
+        try {
+          const result = await sendRequest(API_BASE + "/auth/register", {
+            nome: document.getElementById("registerNome").value,
+            email: document.getElementById("registerEmail").value,
+            telefone: document.getElementById("registerTelefone").value,
+            senha: document.getElementById("registerSenha").value,
+            tipo: document.querySelector("input[name='registerTipo']:checked").value,
+          });
+
+          setStatus(result.mensagem, "success");
+          registerForm.reset();
+          document.getElementById("loginEmail").value = result.usuario.email;
+          switchTab("login");
+        } catch (error) {
+          setStatus(error.message, "error");
+        }
+      });
+
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        setStatus("Validando login...", "info");
+
+        try {
+          const result = await sendRequest(API_BASE + "/auth/login", {
+            email: document.getElementById("loginEmail").value,
+            senha: document.getElementById("loginSenha").value,
+          });
+
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({
+              id: result.usuario.id,
+              nome: result.usuario.nome,
+              email: result.usuario.email,
+              telefone: result.usuario.telefone,
+              tipo: result.usuario.tipo,
+            })
+          );
+
+          renderLoggedUser();
+          setStatus(result.mensagem + " Redirecionando...", "success");
+
+          setTimeout(() => {
+            window.location.href =
+              result.usuario.tipo === "Locador" ? "locador.html" : "index.html";
+          }, 1200);
+        } catch (error) {
+          setStatus(error.message, "error");
+        }
+      });
+
+      renderLoggedUser();
+      setStatus(`Backend esperado em ${API_BASE}.`, "info");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre a ClickHome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+      color: #0f172a;
+      line-height: 1.7;
+      transition: 0.3s;
+    }
+
+    header {
+      background: rgba(7, 17, 31, 0.92);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5vw;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
+    nav a:hover { background: rgba(255,255,255,0.1); }
+
+    nav button {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+      border: none;
+      padding: 10px 14px;
+      color: #111827;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    section { padding: 64px 5vw; }
+
+    .container {
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #0f4c81;
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 22px;
+    }
+
+    .intro {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+      color: #475569;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      padding: 26px;
+      border-radius: 22px;
+      box-shadow: 0 22px 60px rgba(15,23,42,0.12);
+      border: 1px solid rgba(15,23,42,0.08);
+    }
+
+    .card h3 {
+      color: #0f4c81;
+      margin-top: 0;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #0f4c81, #1d4ed8);
+      color: white;
+      text-align: center;
+      border-radius: 26px;
+      padding: 44px 24px;
+      box-shadow: 0 24px 70px rgba(29,78,216,0.25);
+    }
+
+    .cta h2 { color: white; }
+
+    .cta button {
+      margin-top: 15px;
+      padding: 13px 22px;
+      border: none;
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+      color: #111827;
+      font-weight: bold;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      background: rgba(7,17,31,0.96);
+      color: rgba(255,255,255,0.86);
+    }
+
+    body.dark {
+      background: linear-gradient(180deg, #07111f 0%, #0d172b 100%);
+      color: white;
+    }
+
+    body.dark .card {
+      background: rgba(15,23,42,0.9);
+      color: #dbeafe;
+    }
+
+    body.dark .intro { color: #cbd5e1; }
+
+    @media (max-width: 760px) {
+      header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ClickHome</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="imoveis.html">Imoveis</a>
+    <a href="contato.html">Contato</a>
+    <a href="login.html">Login</a>
+    <button id="themeBtn">🌙</button>
+  </nav>
+</header>
+
+<section>
+  <div class="container">
+    <h2>Quem Somos</h2>
+    <p class="intro">
+      A ClickHome e uma imobiliaria moderna criada para aproximar tecnologia,
+      atendimento humano e uma experiencia digital elegante. Nossa proposta e
+      simplificar a busca, analise e contato com imoveis de forma clara e segura.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Nossos Diferenciais</h2>
+    <div class="grid">
+      <div class="card"><h3>Tecnologia</h3><p>Plataforma moderna com navegacao intuitiva e integracao com recursos visuais.</p></div>
+      <div class="card"><h3>Busca Inteligente</h3><p>Apresentacao clara de imoveis e informacoes essenciais para facilitar a escolha.</p></div>
+      <div class="card"><h3>Agilidade</h3><p>Contato rapido, cadastro simples e comunicacao direta com o cliente.</p></div>
+      <div class="card"><h3>Transparencia</h3><p>Informacoes objetivas e foco na confianca ao longo de toda a jornada.</p></div>
+      <div class="card"><h3>Seguranca</h3><p>Processos pensados para demonstrar organizacao e credibilidade na negociacao.</p></div>
+      <div class="card"><h3>Inovacao</h3><p>Uma imobiliaria com linguagem atual, visual forte e proposta digital.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Missao, Visao e Valores</h2>
+    <div class="grid">
+      <div class="card"><h3>Missao</h3><p>Conectar pessoas ao imovel ideal com praticidade e tecnologia.</p></div>
+      <div class="card"><h3>Visao</h3><p>Ser referencia em experiencia digital no mercado imobiliario.</p></div>
+      <div class="card"><h3>Valores</h3><p>Etica, transparencia, cuidado com o cliente e melhoria continua.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta">
+      <h2>Encontre seu imovel com a ClickHome</h2>
+      <p>Uma apresentacao moderna para um atendimento imobiliario mais proximo e eficiente.</p>
+      <button onclick="window.location.href='imoveis.html'">Ver Imoveis</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ClickHome - Todos os direitos reservados</p>
+</footer>
+
+<script>
+  const btn = document.getElementById("themeBtn");
+  btn.onclick = () => {
+    document.body.classList.toggle("dark");
+    btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  };
+</script>
+
+</body>
+</html>

@@ -1,36 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+
+namespace Imobiliaria.Models;
 
 public class Cliente
 {
     public int Id { get; set; }
 
     [Required]
-    public string Nome { get; set; }
+    public string Nome { get; set; } = string.Empty;
 
     [Required]
-    public string CPF { get; set; }
+    public string CPF { get; set; } = string.Empty;
 
-    public string Telefone { get; set; }
-
-    public string Email { get; set; }
-
-    // Endereço completo (rua, número, bairro, cidade, estado, CEP)
-    public string Endereco { get; set; }
-
-    // Tipo do cadastro: "Cliente" ou "Locador"
-    public string TipoCliente { get; set; }
-
-    // Tipo de pessoa: "Física" ou "Jurídica" (usado principalmente para locador)
-    public string TipoPessoa { get; set; }
-
-    // Caso a pessoa seja jurídica, CNPJ pode ser informado
-    public string CNPJ { get; set; }
-
-    // Documento de identidade (RG) quando aplicável
-    public string DocumentoIdentidade { get; set; }
-
-    // Dados bancários (opcionais) — podem ser úteis para repasses ao locador
-    public string BancoNome { get; set; }
-    public string BancoAgencia { get; set; }
-    public string BancoConta { get; set; }
+    public string Telefone { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Endereco { get; set; } = string.Empty;
+    public string TipoCliente { get; set; } = "Cliente";
+    public string TipoPessoa { get; set; } = "Fisica";
+    public string CNPJ { get; set; } = string.Empty;
+    public string DocumentoIdentidade { get; set; } = string.Empty;
+    public string BancoNome { get; set; } = string.Empty;
+    public string BancoAgencia { get; set; } = string.Empty;
+    public string BancoConta { get; set; } = string.Empty;
+    public DateTime CriadoEm { get; set; } = DateTime.UtcNow;
 }

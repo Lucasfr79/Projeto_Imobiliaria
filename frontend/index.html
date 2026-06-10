@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imobiliária ClickHome</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="light">
+    <header>
+      <h1>Imobiliária ClickHome</h1>
+
+      <nav>
+        <a href="login.html">Login</a>
+        <a href="imoveis.html">Imóveis</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        <button id="themeBtn">🌙</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Encontre o imóvel perfeito para sua vida</h2>
+      <p>Compra, venda e aluguel com uma experiência digital moderna, elegante e prática.</p>
+      <button id="btnVerImoveis">Ver imóveis</button>
+    </section>
+
+    <section class="features">
+      <div class="card">
+        <h3>Busca Inteligente</h3>
+        <p>Filtre imóveis por localização, faixa de preço e estilo de moradia.</p>
+      </div>
+
+      <div class="card">
+        <h3>Segurança</h3>
+        <p>Apresentação clara, atendimento confiável e uma jornada mais transparente.</p>
+      </div>
+
+      <div class="card">
+        <h3>Atendimento</h3>
+        <p>Suporte ágil para conectar você ao imóvel ideal com rapidez.</p>
+      </div>
+    </section>
+
+    <section class="banner">
+      <h2>Seu novo lar está aqui</h2>
+      <p>Descubra casas, apartamentos e terrenos com imagens inspiradoras e uma navegação agradável.</p>
+
+      <div class="carrossel">
+        <button class="prev">◀</button>
+        <div class="anuncios">
+          <div class="item"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Casa moderna com fachada elegante"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Sala ampla e iluminada"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80" alt="Casa contemporânea com jardim"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80" alt="Área gourmet de residência moderna"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="Casa de alto padrão com piscina"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" alt="Cozinha sofisticada em apartamento"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Fachada residencial com varanda"></div>
+          <div class="item"><img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1200&q=80" alt="Quarto moderno e confortável"></div>
+        </div>
+        <button class="next">▶</button>
+      </div>
+    </section>
+
+    <section class="imoveis" id="imoveis">
+      <h2>Imóveis em destaque</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" alt="Casa moderna com fachada branca">
+          <h3>Casa Moderna</h3>
+          <p>3 quartos, 2 banheiros, garagem dupla e área gourmet.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Apartamento sofisticado e iluminado">
+          <h3>Apartamento Central</h3>
+          <p>2 quartos, sala ampla, sacada e localização estratégica.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Ambiente interno aconchegante de imóvel">
+          <h3>Residência Premium</h3>
+          <p>Ambientes integrados, acabamento refinado e visual contemporâneo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mapa">
+      <h2>Nosso endereço</h2>
+
+      <p class="cta">
+        Venha conversar com a gente pessoalmente e conhecer os melhores imóveis da cidade.
+      </p>
+      <p>
+        Rua das Araucárias, 742 - Sala 05<br />
+        Zona 07<br />
+        Maringá - PR
+      </p>
+      <button class="btn-visita">Agendar visita</button>
+
+      <div id="map"></div>
+    </section>
+
+    <section class="contato" id="contato">
+      <h2>Fale Conosco</h2>
+      <input type="text" placeholder="Seu nome" />
+      <input type="email" placeholder="Seu e-mail" />
+      <button>Enviar</button>
+    </section>
+
+    <footer>
+      <p>© 2026 Imobiliária ClickHome</p>
+    </footer>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="api-config.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="style.js"></script>
+  </body>
+</html>

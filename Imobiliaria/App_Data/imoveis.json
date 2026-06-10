@@ -1,0 +1,110 @@
+[
+  {
+    "Id": 1,
+    "LocadorId": null,
+    "Titulo": "Casa Moderna",
+    "Localizacao": "Zona 07 - Maringa/PR",
+    "Descricao": "3 quartos, 2 banheiros, garagem dupla.",
+    "Preco": 550000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 2,
+    "LocadorId": null,
+    "Titulo": "Apartamento Central",
+    "Localizacao": "Centro - Maringa/PR",
+    "Descricao": "2 quartos, sacada gourmet e vaga coberta.",
+    "Preco": 320000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 3,
+    "LocadorId": null,
+    "Titulo": "Terreno Espacoso",
+    "Localizacao": "Jardim Alvorada - Maringa/PR",
+    "Descricao": "500m2 em bairro tranquilo e com facil acesso.",
+    "Preco": 210000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 4,
+    "LocadorId": null,
+    "Titulo": "Sobrado Premium",
+    "Localizacao": "Zona 02 - Maringa/PR",
+    "Descricao": "4 quartos, area gourmet e piscina.",
+    "Preco": 890000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 5,
+    "LocadorId": null,
+    "Titulo": "Casa com Jardim",
+    "Localizacao": "Jardim Alvorada - Maringa/PR",
+    "Descricao": "3 quartos, quintal amplo e varanda.",
+    "Preco": 470000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 6,
+    "LocadorId": null,
+    "Titulo": "Apartamento Iluminado",
+    "Localizacao": "Novo Centro - Maringa/PR",
+    "Descricao": "2 quartos, sala integrada e sacada.",
+    "Preco": 345000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 7,
+    "LocadorId": null,
+    "Titulo": "Residencia Contemporanea",
+    "Localizacao": "Zona 05 - Maringa/PR",
+    "Descricao": "4 quartos, suite e acabamento premium.",
+    "Preco": 760000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 8,
+    "LocadorId": null,
+    "Titulo": "Casa com Area Gourmet",
+    "Localizacao": "Jardim Italia - Maringa/PR",
+    "Descricao": "3 quartos, churrasqueira e espaco externo.",
+    "Preco": 590000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 9,
+    "LocadorId": null,
+    "Titulo": "Cozinha Planejada",
+    "Localizacao": "Centro - Maringa/PR",
+    "Descricao": "Apartamento com projeto moderno e funcional.",
+    "Preco": 410000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 10,
+    "LocadorId": null,
+    "Titulo": "Fachada Elegante",
+    "Localizacao": "Zona 08 - Maringa/PR",
+    "Descricao": "Imovel com varanda, jardim e garagem.",
+    "Preco": 640000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 11,
+    "LocadorId": null,
+    "Titulo": "Suite Confortavel",
+    "Localizacao": "Jardim Paulista - Maringa/PR",
+    "Descricao": "Dormitorios aconchegantes e excelente iluminacao.",
+    "Preco": 380000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  },
+  {
+    "Id": 12,
+    "LocadorId": null,
+    "Titulo": "Casa Familiar",
+    "Localizacao": "Zona 03 - Maringa/PR",
+    "Descricao": "Amplo espaco interno para toda a familia.",
+    "Preco": 525000,
+    "ImagemUrl": "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format\u0026fit=crop\u0026w=1200\u0026q=80"
+  }
+]
